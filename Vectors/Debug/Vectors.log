@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (Vectors and Matrixes.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  Main.cpp
+  My_matrix.cpp
+  Создание кода...
+C:\Users\Ivashka\source\repos\Vectors\My_matrix.cpp(88): warning C4715: Matrix::operator*: значение возвращается не при всех путях выполнения
+C:\Users\Ivashka\source\repos\Vectors\GaussSolver.h(159): warning C4715: GaussSolver::solve: значение возвращается не при всех путях выполнения
+  LINK : не найден или не выполнена сборка C:\Users\Ivashka\source\repos\Vectors\Debug\Vectors.exe при последней инкрементной компоновке; выполняется полная компоновка
+  Vectors.vcxproj -> C:\Users\Ivashka\source\repos\Vectors\Debug\Vectors.exe
