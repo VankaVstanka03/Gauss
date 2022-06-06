@@ -150,15 +150,15 @@ void Matrix::resize(int NewM, int NewN){
 }
 
 Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMax){
-	Matrix tri(m.n,m.m);
+	Matrix tri = m;
 	Vector copy(m.m);
 	//std::Vector<int> posMax;
 	copy = b;
-	for (int i = 0; i < tri.m; i++) {
-		for (int j = 0; j < tri.n; j++) {
-			tri[i][j] = m[j][i];
-		}
-	}
+	//for (int i = 0; i < tri.m; i++) {
+	//	for (int j = 0; j < tri.n; j++) {
+	//		tri[i][j] = m[j][i];
+	//	}
+	//}
 	int position;
 	double tmp;
 	int min = tri.m < tri.n ? tri.m : tri.n;
@@ -177,6 +177,16 @@ Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMa
 					copy[j] = tmp * copy[j] - tri[j][position] * copy[i];
 					tri[j] = tmp * tri[j] - tri[j][position] * tri[i];
 				}
+			}
+		}
+		for (int i = min; i < max; i++) {
+			tmp = tri.Max(tri, i, position);
+			if (tmp != 0) {
+				copy[i] = copy[i] / tmp;
+				for (int k = 0; k < tri.n; k++) {
+					tri[i][k] = tri[i][k] / tmp;
+				}
+				tmp = 1;
 			}
 		}
 	}
@@ -209,7 +219,7 @@ Matrix Matrix::upper_triangle(const Matrix& m, Vector& b){
 	int min = up_tri.m < up_tri.n ? up_tri.m : up_tri.n;
 	int max = up_tri.m > up_tri.n ? up_tri.m : up_tri.n;
 	if (up_tri.m >= up_tri.n) {
-		for (int i = 1; i < min; i++) {
+		for (int i = 1; i < max; i++) {
 			tmp = up_tri.Max(up_tri, i, position);
 			if (tmp != 0) {
 				for (int j = 0; j < i; j++) {
@@ -275,6 +285,9 @@ double Matrix::Max(const Matrix& m, int k, int& pos){
 			max = m[k][i];
 			pos = i;
 		}
+	}
+	if (max == 0.0) {
+		pos = -1;
 	}
 	return max;
 }
