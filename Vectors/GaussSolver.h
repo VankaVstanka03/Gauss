@@ -111,12 +111,12 @@ public:
 			}
 			else {
 				std::vector<int> Pass(copyA2.get_n());
-				int size = rank - m;
+				int size = real_rank - m;
 				std::vector<Vector> res(size+1);
 				for (int i = 0; i < size+1; i++) {
 					res[i].resize(copyA2.get_n());
 				}
-				for (int i = 0; i < rank; i++) {
+				for (int i = 0; i < copyA2.get_m(); i++) {
 					if (copyA2.Max(copyA2, i, position) == 1 ) {
 						res[0][position] = copyV[i];
 					}
@@ -166,17 +166,17 @@ public:
 				}
 			}
 			std::vector<int> Pass(copyA2.get_n());
-			int size = real_rank;
-			std::vector<Vector> res(size);
-			for (int i = 0; i < size; i++) {
+			int size = copyA2.get_n() - real_rank;
+			std::vector<Vector> res(size+1);
+			for (int i = 0; i < size+1; i++) {
 				res[i].resize(copyA2.get_n());
 			}
-			for (int i = 0; i < rank; i++) {
+			for (int i = 0; i < copyA2.get_m(); i++) {
 				if (copyA2.Max(copyA2, i, position) == 1) {
 					res[0][position] = copyV[i];
 				}
 			}
-			for (int i = 1; i < size; i++) {				
+			for (int i = 1; i < size + 1; i++) {				
 				for (int j = 0; j < copyA2.get_n(); j++) {
 					if (Pass[j] == 0) {
 						bool p = true;
@@ -206,7 +206,7 @@ public:
 
 				}
 			}
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size + 1; i++) {
 				std::cout << "Vector " << i << std::endl << res[i] << std::endl;
 			}
 			std::cout << copyA2 << std::endl;

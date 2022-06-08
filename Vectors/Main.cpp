@@ -14,10 +14,10 @@ void test5();
 int main() {
 	//std::cout << "test1" << std::endl;
 	//test1();
-	std::cout << "test2" << std::endl;
-	test2();
-	//std::cout << "test3" << std::endl;
-	//test3();
+	//std::cout << "test2" << std::endl;
+	//test2();
+	std::cout << "test3" << std::endl;
+	test3();
 	//std::cout << "test4" << std::endl;
 	//test4();
 	//std::cout << "test5" << std::endl;
@@ -88,6 +88,7 @@ void test1(){
 	//std::cout << a.down_triangle(a, b, posmax) << std::endl;
 	//std::cout << b << std::endl;
 	//std::cout << a.upper_triangle(a.down_triangle(a, b, posmax), b) << std::endl;
+	//std::cout << b << std::endl;
 }
 
 void test2(){
@@ -149,6 +150,7 @@ void test2(){
 	otvet = a1.solve(a, b);
 	//Matrix d = a.down_triangle(a, b, posmax);
 	//std::cout << a.down_triangle(a, b, posmax) << std::endl;
+	//std::cout << b << std::endl;
 	//std::cout << d.upper_triangle(d, b) << std::endl;
 	//std::cout << b << std::endl;
 }
@@ -157,21 +159,21 @@ void test3(){
 	GaussSolver a1;
 	Vector b(3);
 	std::vector<int> posmax(3);
-	b[0] = 6;
-	b[1] = 1;
-	b[2] = -2;
+	b[0] = 0;
+	b[1] = 0;
+	b[2] = 0;
 	Matrix a(3, 3);
-	a[0][0] = 1;
-	a[0][1] = 2;
-	a[0][2] = 3;
+	a[0][0] =1;
+	a[0][1] =2;
+	a[0][2] =3;
 
-	a[1][0] = 3;
-	a[1][1] = -7;
-	a[1][2] = -1;
+	a[1][0] = 4;
+	a[1][1] = 5;
+	a[1][2] = 6;
 
-	a[2][0] = -2;
-	a[2][1] = 9;
-	a[2][2] = 4;
+	a[2][0] = 7;
+	a[2][1] = 8;
+	a[2][2] = 9;
 
 
 	std::cout << a << std::endl;
@@ -223,43 +225,21 @@ void test4(){
 void test5(){
 	std::vector<int> posmax(3);
 	GaussSolver a1;
-	Vector b(6);
+	Vector b(1);
 	b[0] = -3;
-	b[1] = 2;
-	b[2] = -2;
-	b[3] = -3;
-	b[4] = 2;
-	b[5] = -2;
-	Matrix a(6, 3);
-	a[0][0] = 1;
-	a[0][1] = -1;
-	a[0][2] = -2;
 	
-	a[1][0] = 3;
-	a[1][1] = -2;
-	a[1][2] = -1;
-
-	a[2][0] = -2;
-	a[2][1] = 1;
-	a[2][2] = 3;
-
-	a[3][0] = -7;
-	a[3][1] = 6;
-	a[3][2] = 1;
-
-	a[4][0] = 2;
-	a[4][1] = 3;
-	a[4][2] = 9;
-
-	a[5][0] = 0;
-	a[5][1] = 11;
-	a[5][2] = 3;
+	Matrix a(1, 5);
+	a[0][0] = 1;
+	a[0][1] = -3;
+	a[0][2] = -7;
+	a[0][3] = 11;
+	a[0][4] = 5;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	//std::vector<Vector> otvet;
-	//otvet = a1.solve(a, b);
-	Matrix d = a.down_triangle(a, b, posmax);
-	std::cout << a.down_triangle(a, b, posmax) << std::endl;
-	std::cout << d.upper_triangle(d, b) << std::endl;
-	std::cout << b << std::endl;
+	std::vector<Vector> otvet;
+	otvet = a1.solve(a, b);
+	//Matrix d = a.down_triangle(a, b, posmax);
+	//std::cout << a.down_triangle(a, b, posmax) << std::endl;
+	//std::cout << d.upper_triangle(d, b) << std::endl;
+	//std::cout << b << std::endl;
 }

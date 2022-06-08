@@ -222,6 +222,7 @@ Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMa
 						copy[j] = 0;
 					}
 				}
+				//std::cout << copy << std::endl;
 			}
 		}
 	}
@@ -252,10 +253,12 @@ Matrix Matrix::upper_triangle(const Matrix& m, Vector& b){
 			tmp = up_tri.Max(up_tri, i, position);
 			if (tmp != 0) {
 				for (int j = 0; j < i; j++) {
-					up_tri[j] = tmp * up_tri[j] - up_tri[j][position] * up_tri[i];
 					copy[j] = copy[j] - up_tri[j][position] * copy[i];
+					up_tri[j] = tmp * up_tri[j] - up_tri[j][position] * up_tri[i];
+					//copy[j] = copy[j] - up_tri[j][position] * copy[i];
 				}
 			}
+			//std::cout << copy << std::endl;
 		}
 	}
 	b = copy;
