@@ -167,6 +167,10 @@ Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMa
 		for (int i = 0; i < min; i++) {
 			tmp = tri.Max(tri, i, position);
 			posMax[i] = position;
+			if ((tmp < 1e-10 && tmp > 1e-20)||(tmp < -1e-20 && tmp > -1e-10) ){
+				tmp = 0;
+				tri[i][position] = 0;
+			}
 			if (tmp != 0) {
 				copy[i] = copy[i] / tmp;
 				for (int k = 0; k < tri.n; k++) {
@@ -176,11 +180,18 @@ Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMa
 				for (int j = i + 1; j < max; j++) {
 					copy[j] = tmp * copy[j] - tri[j][position] * copy[i];
 					tri[j] = tmp * tri[j] - tri[j][position] * tri[i];
+					if ((copy[j] < 1e-10 && copy[j] > 1e-20) || (copy[j] < -1e-20 && copy[j] > -1e-10)) {
+						copy[j] = 0;
+					}
 				}
 			}
 		}
 		for (int i = min; i < max; i++) {
 			tmp = tri.Max(tri, i, position);
+			if ((tmp < 1e-10 && tmp > 1e-20) || (tmp < -1e-20 && tmp > -1e-10)) {
+				tmp = 0;
+				tri[i][position] = 0;
+			}
 			if (tmp != 0) {
 				copy[i] = copy[i] / tmp;
 				for (int k = 0; k < tri.n; k++) {
@@ -194,6 +205,10 @@ Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMa
 		for (int i = 0; i < min; i++) {
 			tmp = tri.Max(tri, i, position);
 			posMax[i] = position;
+			if ((tmp < 1e-10 && tmp > 1e-20) || (tmp < -1e-20 && tmp > -1e-10)) {
+				tmp = 0;
+				tri[i][position] = 0;
+			}
 			if (tmp != 0) {
 				copy[i] = copy[i] / tmp;
 				for (int k = 0; k < tri.n; k++) {
@@ -203,6 +218,9 @@ Matrix Matrix::down_triangle(const Matrix& m, Vector& b, std::vector<int>& posMa
 				for (int j = i + 1; j < min; j++) {
 					tri[j] = tmp * tri[j] - tri[j][position] * tri[i];
 					copy[j] = copy[j] - tri[j][position] * copy[i];
+					if ((copy[j] < 1e-10 && copy[j] > 1e-20) || (copy[j] < -1e-20 && copy[j] > -1e-10)) {
+						copy[j] = 0;
+					}
 				}
 			}
 		}

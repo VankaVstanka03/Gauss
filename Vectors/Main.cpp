@@ -155,32 +155,34 @@ void test2(){
 
 void test3(){
 	GaussSolver a1;
-	Vector b(4);
-	b[0] = -3;
-	b[1] = 2;
+	Vector b(3);
+	std::vector<int> posmax(3);
+	b[0] = 6;
+	b[1] = 1;
 	b[2] = -2;
-	b[3] = -1;
-	Matrix a(4, 4);
+	Matrix a(3, 3);
 	a[0][0] = 1;
-	a[0][1] = -1;
-	a[0][2] = -2;
-	a[0][3] = -3;
+	a[0][1] = 2;
+	a[0][2] = 3;
+
 	a[1][0] = 3;
-	a[1][1] = -2;
+	a[1][1] = -7;
 	a[1][2] = -1;
-	a[1][3] = -2;
+
 	a[2][0] = -2;
-	a[2][1] = 1;
-	a[2][2] = 3;
-	a[2][3] = 3;
-	a[3][0] = -2;
-	a[3][1] = 2;
-	a[3][2] = 1;
-	a[3][3] = 3;
+	a[2][1] = 9;
+	a[2][2] = 4;
+
+
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::vector<Vector> otvet;
 	otvet = a1.solve(a, b);
+	//Matrix d = a.down_triangle(a, b, posmax);
+	//std::cout << d << std::endl;
+	//std::cout << b << std::endl;
+	//std::cout << d.upper_triangle(d, b) << std::endl;
+	//std::cout << b << std::endl;
 }
 
 void test4(){
